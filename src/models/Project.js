@@ -44,6 +44,10 @@ const projectSchema = new mongoose.Schema({
     people: {
         type: Number,
         required: true,
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
     }
 })
 

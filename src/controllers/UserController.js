@@ -10,7 +10,7 @@ module.exports = {
                 email,
                 password,
             })
-            return res.json({ email })
+            return res.status(200).json({ email })
         } catch(err) {
             return res.status(400).send(err)
         }
@@ -20,7 +20,7 @@ module.exports = {
         try {
             const user = await User.findOne({ email })
             if (!user) return res.status(400).send('Usuário não encontrado')
-            return res.json(user._id)
+            return res.status(200).json(user._id)
         } catch(err) {
             return res.status(400).send(err)        
         }
@@ -33,7 +33,7 @@ module.exports = {
             let user = await User.findOne({ email })            
             if (auth != user._id) return res.status(400).send('Operação não autorizada. Autenticação incorreta')
             await User.deleteOne({ email })
-            return res.json(`Usuário ${email} deletado com sucesso`)
+            return res.status(200).json(`Usuário ${email} deletado com sucesso`)
         } catch(err) {
             return res.status(400).send(err)
         }
