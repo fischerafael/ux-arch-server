@@ -4,6 +4,7 @@ module.exports = {
     async create(req,res){
         const { category, name, score, url, fenestration, size, light, color, material, furniture, people } = req.body
         const { user_id } = req.headers
+        if (!user_id) return res.status(400).send('Usuário não logado')
         try {
             const project = await Project.create({ 
                 category,
